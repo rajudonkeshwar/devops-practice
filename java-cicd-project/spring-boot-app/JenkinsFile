@@ -25,7 +25,7 @@ pipeline {
         sh 'ls -ltr'
         sh '''cd java-cicd-project/spring-boot-app && mvn sonar:sonar \\
               -Dsonar.host.url=http://localhost:9000 \\
-              -Dsonar.login=squ_620f5f548c929c67f28573191c3fa6722dd08004'''
+              -Dsonar.login=squ_129748e3070056c32964365433b321a41ddf58d6'''
     }
 }
 
@@ -51,7 +51,7 @@ pipeline {
 stage('Push image to Hub'){
     steps{
         script{
-            withCredentials([string(credentialsId: 'docker-hub', variable: 'dockerhub')]) {
+            withCredentials([string(credentialsId: 'dockerhub', variable: 'dockerhub')]) {
             sh 'docker login -u rajudonkeshwar -p ${dockerhub}'
 
       }
