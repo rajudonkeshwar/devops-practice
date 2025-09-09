@@ -36,7 +36,7 @@ pipeline {
     steps{
         script{
             echo 'docker image build'
-  sh 'cd java-cicd-project/spring-boot-app && docker build -t rajudonkeshwar/java:${BUILD_NUMBER} .'
+  sh 'cd java-cicd-project/spring-boot-app && sudo docker build -t rajudonkeshwar/java:${BUILD_NUMBER} .'
         }
     }
 }
@@ -52,10 +52,10 @@ stage('Push image to Hub'){
     steps{
         script{
             withCredentials([string(credentialsId: 'dockerhub', variable: 'dockerhub')]) {
-            sh 'docker login -u rajudonkeshwar -p ${dockerhub}'
+            sh 'sudo docker login -u rajudonkeshwar -p ${dockerhub}'
 
       }
-            sh 'docker push rajudonkeshwar/java:${BUILD_NUMBER}'
+            sh 'sudo docker push rajudonkeshwar/java:${BUILD_NUMBER}'
         }
     }
 }
