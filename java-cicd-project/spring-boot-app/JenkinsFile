@@ -41,21 +41,21 @@ pipeline {
     }
 }
 		
-    stage('docker image scan'){
-    steps{
-        sh "trivy image rajudonkeshwar/java:${BUILD_NUMBER}"
-    }
-}		
+//     stage('docker image scan'){
+//     steps{
+//         sh "trivy image rajudonkeshwar/java:${BUILD_NUMBER}"
+//     }
+// }		
 
 
 stage('Push image to Hub'){
     steps{
         script{
             withCredentials([string(credentialsId: 'dockerhub', variable: 'dockerhub')]) {
-            sh 'sudo docker login -u rajudonkeshwar -p ${dockerhub}'
+            sh 'docker login -u rajudonkeshwar -p ${dockerhub}'
 
       }
-            sh 'sudo docker push rajudonkeshwar/java:${BUILD_NUMBER}'
+            sh 'docker push rajudonkeshwar/java:${BUILD_NUMBER}'
         }
     }
 }
