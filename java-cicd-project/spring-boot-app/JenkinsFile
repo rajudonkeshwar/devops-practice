@@ -1,5 +1,10 @@
 pipeline {
-    agent any
+    agent {
+    docker {
+      image 'abhishekf5/maven-abhishek-docker-agent:v1'
+      args '--user root -v /var/run/docker.sock:/var/run/docker.sock' // mount Docker socket to access the host's Docker daemon
+    }
+    }
 
     stages {
     stage('Checkout Code') {
@@ -25,7 +30,7 @@ pipeline {
         sh 'ls -ltr'
         sh '''cd java-cicd-project/spring-boot-app && mvn sonar:sonar \\
               -Dsonar.host.url=http://localhost:9000 \\
-              -Dsonar.login=squ_129748e3070056c32964365433b321a41ddf58d6'''
+              -Dsonar.login=squ_d519f9f045bdd07c9fb4866a7614f18155c09308'''
     }
 }
 
