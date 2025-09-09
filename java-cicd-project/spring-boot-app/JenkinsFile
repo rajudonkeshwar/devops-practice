@@ -10,11 +10,11 @@ pipeline {
     }
     
     
-    stage('Build and Test') {
+    stage('Compile and Test') {
       steps {
         sh 'ls -ltr'
         // build the project and create a JAR file
-        sh 'cd java-cicd-project/spring-boot-app && mvn clean package'
+        sh 'cd java-cicd-project/spring-boot-app && mvn compile && mvn test'
       }
     }
 
@@ -28,6 +28,15 @@ pipeline {
               -Dsonar.login=squ_d519f9f045bdd07c9fb4866a7614f18155c09308'''
     }
 }
+
+
+    stage('Building the code') {
+      steps {
+        sh 'ls -ltr'
+        // build the project and create a JAR file
+        sh 'cd java-cicd-project/spring-boot-app && mvn clean package'
+      }
+    }
 
 
 
@@ -56,6 +65,16 @@ stage('Push image to Hub'){
 
       }
             sh 'docker push rajudonkeshwar/java:${BUILD_NUMBER}'
+        }
+    }
+}
+
+
+stage('Deploying image to docker container'){
+    steps{
+        script{
+       
+            sh 'docker run -itd --name java-app -p 8000:8080 rajudonkeshwar/java:${BUILD_NUMBER}'
         }
     }
 }
