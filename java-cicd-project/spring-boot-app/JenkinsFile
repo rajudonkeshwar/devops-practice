@@ -35,7 +35,7 @@ pipeline {
 stage('Dependency Check') {
     steps {
         sh '''
-            dependency-check.sh \
+            /opt/dependency-check/bin/dependency-check.sh \
             --project "SpringBootApp" \
             --scan java-cicd-project/spring-boot-app \
             --format HTML \
