@@ -30,14 +30,14 @@ The above maven target stroes the artifacts to the `target` directory. You can e
 # I have taken instance type as t2.large and i attched volume 50gb
 
 ## After the server was configured initially i installed jenkins using below commands
-      "sudo yum install wget ",
-      "sudo wget -O /etc/yum.repos.d/jenkins.repo https://pkg.jenkins.io/redhat-stable/jenkins.repo",
-      "sudo rpm --import https://pkg.jenkins.io/redhat-stable/jenkins.io-2023.key",	    
-      "sudo yum upgrade -y",
-      "sudo dnf install java-17-amazon-corretto -y",	  
-      "sudo yum install jenkins -y",
- 	    "sudo systemctl start jenkins",
-      "sudo systemctl enable jenkins",
+      sudo yum install wget
+      sudo wget -O /etc/yum.repos.d/jenkins.repo https://pkg.jenkins.io/redhat-stable/jenkins.repo
+      sudo rpm --import https://pkg.jenkins.io/redhat-stable/jenkins.io-2023.key	    
+      sudo yum upgrade -y
+      sudo dnf install java-17-amazon-corretto -y	  
+      sudo yum install jenkins -y
+ 	    sudo systemctl start jenkins
+      sudo systemctl enable jenkins
 
 
 ## Then install docker using below commands
