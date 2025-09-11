@@ -46,6 +46,7 @@ The above maven target stroes the artifacts to the `target` directory. You can e
       sudo service docker start
       sudo usermod -aG docker ec2-user
       sudo usermod -a -G docker jenkins
+      sudo yum install git maven -y
 
 
 
